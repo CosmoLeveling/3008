@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://et3jd8itq2ab"]
+
+[ext_resource type="Script" path="res://grid_map.gd" id="1_2f0fo"]
+[ext_resource type="Script" path="res://dayNight.gd" id="1_kaf2l"]
+[ext_resource type="Environment" uid="uid://ctwny426cueij" path="res://Day.tres" id="1_w4jlw"]
+[ext_resource type="Script" path="res://control.gd" id="3_dabfn"]
+[ext_resource type="PackedScene" uid="uid://drfti6t4gpmjd" path="res://player.tscn" id="4_5co3o"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_w4jlw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.128, 0)
+shadow_enabled = true
+script = ExtResource("1_kaf2l")
+
+[node name="GridMap" type="GridMap" parent="." node_paths=PackedStringArray("Player")]
+cell_size = Vector3(10, 10, 10)
+script = ExtResource("1_2f0fo")
+view_distance = 12
+Player = NodePath("../Player")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_dabfn")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_right = 553.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 50
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -233.0
+offset_top = -116.0
+offset_right = 233.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Player" parent="." instance=ExtResource("4_5co3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 0)

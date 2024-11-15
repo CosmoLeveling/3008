@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://ctwny426cueij"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_juxdj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_swjiu"]
+sky_material = SubResource("ProceduralSkyMaterial_juxdj")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_swjiu")
+tonemap_mode = 2
+volumetric_fog_enabled = true

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm2p7xe4u3occ"]
+
+[ext_resource type="Material" uid="uid://b2e206nshknql" path="res://materials/floor/marble2/white_marble.tres" id="1_1x34u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uw5m2"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jeelw"]
+size = Vector3(10, 0.1, 10)
+
+[node name="Floor" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = ExtResource("1_1x34u")
+mesh = SubResource("BoxMesh_uw5m2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999936, 0, 0, 0, 0.999936, 0, 0, 0, 0.999936, 0, -5, 0)
+shape = SubResource("BoxShape3D_jeelw")
