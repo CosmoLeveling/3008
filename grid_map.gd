@@ -4,8 +4,8 @@ extends GridMap
 #All floors and rooms
 var Floor_Sceens = [
 	preload("res://Floor.tscn"),
-	preload("res://floor_2.tscn"),
-	preload("res://floor_3.tscn")
+	preload("res://Floor_2.tscn"),
+	preload("res://Floor_3.tscn")
 ]
 
 
