@@ -4,4 +4,4 @@
 background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(0.28485, 0.28485, 0.28485, 1)
-ambient_light_energy = 0.02
+ambient_light_energy = 0.03

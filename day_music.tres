@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=2 format=3 uid="uid://67yjobyo5j0l"]
+
+[ext_resource type="AudioStream" uid="uid://dfimeyokdc7vq" path="res://soft-ambient-atmosphere-140132.mp3" id="1_brwnp"]
+
+[resource]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("1_brwnp")

@@ -1,10 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://drfti6t4gpmjd"]
+[gd_scene load_steps=12 format=3 uid="uid://drfti6t4gpmjd"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k8dix"]
+[ext_resource type="Texture2D" uid="uid://r218084ljqn5" path="res://12167.jpg" id="2_0tnar"]
+[ext_resource type="Script" path="res://Gui.gd" id="3_fdgyg"]
+[ext_resource type="AudioStream" uid="uid://dxynta224p8gq" path="res://footstep-1-83098.mp3" id="4_d35k5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfw6o"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_nyomt"]
+[sub_resource type="BoxMesh" id="BoxMesh_cwqdj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohkvy"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa22j"]
+bg_color = Color(2.45467e-06, 0.721955, 0.29426, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[sub_resource type="Animation" id="Animation_mrv75"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.625198, 0)
+
+[sub_resource type="Animation" id="Animation_n3dwh"]
+resource_name = "walk"
+length = 0.5
+step = 0.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Head")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.625198, 0, 0.25, 1, 0, 0.565745, 0, 0.5, 1, 0, 0.625198, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyhvn"]
+_data = {
+"RESET": SubResource("Animation_mrv75"),
+"walk": SubResource("Animation_n3dwh")
+}
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -14,11 +73,55 @@ script = ExtResource("1_k8dix")
 shape = SubResource("CapsuleShape3D_lfw6o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_nyomt")
+mesh = SubResource("BoxMesh_cwqdj")
 
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625198, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D"]
-spot_range = 10.0
+visible = false
+light_energy = 4.879
+light_volumetric_fog_energy = 5.0
+light_projector = ExtResource("2_0tnar")
+shadow_enabled = true
+spot_range = 62.6727
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Head/Camera3D"]
+
+[node name="Control" type="Control" parent="Head/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+script = ExtResource("3_fdgyg")
+
+[node name="Battery" type="ProgressBar" parent="Head/Camera3D/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -115.0
+offset_right = 125.0
+offset_bottom = -15.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_ohkvy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qa22j")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+stream = ExtResource("4_d35k5")
+volume_db = -20.0
+
+[node name="Animations" type="Node" parent="."]
+
+[node name="walking" type="AnimationPlayer" parent="Animations"]
+libraries = {
+"": SubResource("AnimationLibrary_cyhvn")
+}

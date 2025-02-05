@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1po58ujrnvoo"]
+[gd_scene load_steps=7 format=3 uid="uid://cqkfiv7ugkhxe"]
 
-[ext_resource type="Material" uid="uid://b2e206nshknql" path="res://materials/floor/marble2/white_marble.tres" id="1_fsvbm"]
-[ext_resource type="Material" uid="uid://cyswnx44tq3si" path="res://materials/floor/marble/marble.tres" id="2_hyof4"]
+[ext_resource type="Material" uid="uid://b2e206nshknql" path="res://materials/floor/marble2/white_marble.tres" id="1_t2ax2"]
+[ext_resource type="Material" uid="uid://bobahh6ecyh18" path="res://materials/floor/stone/stone.tres" id="2_brdb4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_uw5m2"]
 size = Vector3(10, 0.1, 10)
@@ -12,11 +12,14 @@ size = Vector3(10, 0.1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_y6voi"]
 size = Vector3(9, 0.1, 9)
 
+[sub_resource type="BoxMesh" id="BoxMesh_kj1x8"]
+size = Vector3(5, 3, 5)
+
 [node name="Floor_2" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
-material_override = ExtResource("1_fsvbm")
+material_override = ExtResource("1_t2ax2")
 mesh = SubResource("BoxMesh_uw5m2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -25,5 +28,10 @@ shape = SubResource("BoxShape3D_jeelw")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.98625, 0)
-material_override = ExtResource("2_hyof4")
+material_override = ExtResource("2_brdb4")
 mesh = SubResource("BoxMesh_y6voi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.87835, 0)
+material_override = ExtResource("2_brdb4")
+mesh = SubResource("BoxMesh_kj1x8")

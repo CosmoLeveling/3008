@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://1nuxx3u0brfk"]
+[gd_scene load_steps=13 format=3 uid="uid://1nuxx3u0brfk"]
 
 [ext_resource type="Texture2D" uid="uid://c5csq1lmbbrph" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_tduqg"]
+[ext_resource type="Material" uid="uid://b2e206nshknql" path="res://materials/floor/marble2/white_marble.tres" id="2_6iadp"]
+[ext_resource type="PackedScene" uid="uid://dmcu0x6xel85k" path="res://panel.tscn" id="3_it2tv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r88h"]
 albedo_texture = ExtResource("1_tduqg")
@@ -8,10 +10,28 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_a6chj"]
 material = SubResource("StandardMaterial3D_1r88h")
-size = Vector3(10, 50, 10)
+size = Vector3(9, 50, 9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xx0sr"]
-size = Vector3(10, 50, 10)
+size = Vector3(9, 50, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_32tth"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ylemb"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0ssgp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evhs1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_0ssgp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ekek2"]
+size = Vector2(2, 1.125)
+
+[sub_resource type="World3D" id="World3D_eglou"]
 
 [node name="Pillar" type="StaticBody3D"]
 transform = Transform3D(1.0009, 0, 0, 0, 1.0009, 0, 0, 0, 1.0009, 0, 0, 0)
@@ -23,3 +43,33 @@ mesh = SubResource("BoxMesh_a6chj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999896, 0, 0, 0, 0.999896, 0, 0, 0, 0.999896, 0, 20, 0)
 shape = SubResource("BoxShape3D_xx0sr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = ExtResource("2_6iadp")
+mesh = SubResource("BoxMesh_32tth")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999936, 0, 0, 0, 0.999936, 0, 0, 0, 0.999936, 0, -5, 0)
+shape = SubResource("BoxShape3D_ylemb")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -2.5964, 4.51152)
+material_override = SubResource("StandardMaterial3D_evhs1")
+mesh = SubResource("QuadMesh_ekek2")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_eglou")
+size = Vector2i(1152, 648)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" parent="SubViewport/Control" instance=ExtResource("3_it2tv")]
+layout_mode = 1

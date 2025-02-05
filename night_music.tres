@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamPlaylist" load_steps=3 format=3 uid="uid://bfhhv86ojqcrq"]
+
+[ext_resource type="AudioStream" uid="uid://cmqaxfc4tg4es" path="res://horror-background-atmosphere-6-199279.mp3" id="1_bp3eq"]
+[ext_resource type="AudioStream" uid="uid://dfmpbe5x7orpu" path="res://horror-background-atmosphere-156462.mp3" id="2_efxyk"]
+
+[resource]
+shuffle = true
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("1_bp3eq")
+stream_1 = ExtResource("2_efxyk")

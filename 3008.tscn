@@ -1,24 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://et3jd8itq2ab"]
+[gd_scene load_steps=8 format=3 uid="uid://et3jd8itq2ab"]
 
-[ext_resource type="Script" path="res://grid_map.gd" id="1_2f0fo"]
-[ext_resource type="Script" path="res://dayNight.gd" id="1_kaf2l"]
-[ext_resource type="Environment" uid="uid://ctwny426cueij" path="res://Day.tres" id="1_w4jlw"]
-[ext_resource type="Script" path="res://control.gd" id="3_dabfn"]
-[ext_resource type="PackedScene" uid="uid://drfti6t4gpmjd" path="res://player.tscn" id="4_5co3o"]
+[ext_resource type="Environment" uid="uid://ctwny426cueij" path="res://Day.tres" id="1_p02ch"]
+[ext_resource type="Script" uid="uid://bb8o4is7qtjql" path="res://dayNight.gd" id="2_hlngp"]
+[ext_resource type="Script" uid="uid://c02kbrsyuy2bn" path="res://grid_map.gd" id="3_e3hkg"]
+[ext_resource type="Script" uid="uid://cfy5okeu4gkux" path="res://control.gd" id="4_frm5c"]
+[ext_resource type="PackedScene" uid="uid://drfti6t4gpmjd" path="res://player.tscn" id="5_kxhrf"]
+[ext_resource type="AudioStream" uid="uid://67yjobyo5j0l" path="res://day_music.tres" id="6_xjqdw"]
+[ext_resource type="Script" uid="uid://dc2ygdee3h75s" path="res://music.gd" id="7_1psic"]
 
-[node name="Node3D" type="Node3D"]
+[node name="3008" type="Node3D"]
 
 [node name="Environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_w4jlw")
+environment = ExtResource("1_p02ch")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.128, 0)
 shadow_enabled = true
-script = ExtResource("1_kaf2l")
+script = ExtResource("2_hlngp")
 
 [node name="GridMap" type="GridMap" parent="." node_paths=PackedStringArray("Player")]
 cell_size = Vector3(10, 10, 10)
-script = ExtResource("1_2f0fo")
+script = ExtResource("3_e3hkg")
 view_distance = 12
 Player = NodePath("../Player")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
@@ -28,7 +30,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("3_dabfn")
+script = ExtResource("4_frm5c")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -62,5 +64,11 @@ offset_right = 233.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Player" parent="." instance=ExtResource("4_5co3o")]
+[node name="Player" parent="." instance=ExtResource("5_kxhrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xjqdw")
+autoplay = true
+bus = &"Ambient"
+script = ExtResource("7_1psic")
