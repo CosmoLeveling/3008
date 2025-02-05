@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://drfti6t4gpmjd"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_k8dix"]
+[ext_resource type="Script" uid="uid://mgpebukg2kfx" path="res://player.gd" id="1_k8dix"]
 [ext_resource type="Texture2D" uid="uid://r218084ljqn5" path="res://12167.jpg" id="2_0tnar"]
-[ext_resource type="Script" path="res://Gui.gd" id="3_fdgyg"]
+[ext_resource type="Script" uid="uid://bo2t8ykbmutq4" path="res://Gui.gd" id="3_fdgyg"]
 [ext_resource type="AudioStream" uid="uid://dxynta224p8gq" path="res://footstep-1-83098.mp3" id="4_d35k5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfw6o"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_cwqdj"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hqtel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohkvy"]
 bg_color = Color(0, 0, 0, 1)
@@ -61,8 +61,8 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.625198, 0, 0.25, 1, 0, 0.565745, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cyhvn"]
 _data = {
-"RESET": SubResource("Animation_mrv75"),
-"walk": SubResource("Animation_n3dwh")
+&"RESET": SubResource("Animation_mrv75"),
+&"walk": SubResource("Animation_n3dwh")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -73,7 +73,7 @@ script = ExtResource("1_k8dix")
 shape = SubResource("CapsuleShape3D_lfw6o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_cwqdj")
+mesh = SubResource("CapsuleMesh_hqtel")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625198, 0)
@@ -123,5 +123,5 @@ volume_db = -20.0
 
 [node name="walking" type="AnimationPlayer" parent="Animations"]
 libraries = {
-"": SubResource("AnimationLibrary_cyhvn")
+&"": SubResource("AnimationLibrary_cyhvn")
 }
