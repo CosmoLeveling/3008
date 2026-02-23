@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://et3jd8itq2ab"]
+[gd_scene format=3 uid="uid://et3jd8itq2ab"]
 
 [ext_resource type="Environment" uid="uid://ctwny426cueij" path="res://Day.tres" id="1_p02ch"]
 [ext_resource type="Script" uid="uid://bb8o4is7qtjql" path="res://dayNight.gd" id="2_hlngp"]
@@ -8,37 +8,38 @@
 [ext_resource type="AudioStream" uid="uid://67yjobyo5j0l" path="res://day_music.tres" id="6_xjqdw"]
 [ext_resource type="Script" uid="uid://dc2ygdee3h75s" path="res://music.gd" id="7_1psic"]
 
-[node name="3008" type="Node3D"]
+[node name="3008" type="Node3D" unique_id=1484258133]
 
-[node name="Environment" type="WorldEnvironment" parent="."]
+[node name="Environment" type="WorldEnvironment" parent="." unique_id=1266882270]
 environment = ExtResource("1_p02ch")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1339268425 node_paths=PackedStringArray("audio")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14.128, 0)
 shadow_enabled = true
 script = ExtResource("2_hlngp")
+audio = NodePath("../AudioStreamPlayer")
 
-[node name="GridMap" type="GridMap" parent="." node_paths=PackedStringArray("Player")]
+[node name="GridMap" type="GridMap" parent="." unique_id=1037689223 node_paths=PackedStringArray("Player")]
 cell_size = Vector3(10, 10, 10)
 script = ExtResource("3_e3hkg")
 view_distance = 12
 Player = NodePath("../Player")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=640658504]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=2074063744]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4_frm5c")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=424449931]
 layout_mode = 1
 offset_right = 553.0
 offset_bottom = 163.0
 theme_override_font_sizes/font_size = 50
 
-[node name="Control2" type="Control" parent="CanvasLayer"]
+[node name="Control2" type="Control" parent="CanvasLayer" unique_id=26745394]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -51,7 +52,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control2"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control2" unique_id=432085843]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -64,10 +65,10 @@ offset_right = 233.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Player" parent="." instance=ExtResource("5_kxhrf")]
+[node name="Player" parent="." unique_id=1314466177 instance=ExtResource("5_kxhrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=987775184]
 stream = ExtResource("6_xjqdw")
 autoplay = true
 bus = &"Ambient"

@@ -7,16 +7,16 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_W):
+func _input(event: InputEvent) -> void:
+	if event.is_key_pressed(KEY_W):
 		position.z -= .1
-	if Input.is_key_pressed(KEY_S):
+	if event.is_key_pressed(KEY_S):
 		position.z += .1
-	if Input.is_key_pressed(KEY_A):
+	if event.is_key_pressed(KEY_A):
 		position.x -= .1
-	if Input.is_key_pressed(KEY_D):
+	if event.is_key_pressed(KEY_D):
 		position.x += .1
-	if Input.is_action_just_pressed("place"):
+	if event.is_action_just_pressed("place"):
 		var newt = Floor.instantiate()
 		newt.global_position = position
 		get_parent().add_child(newt)

@@ -1,5 +1,6 @@
 extends DirectionalLight3D
 @onready var environment: WorldEnvironment = $"../Environment"
+@export var audio: AudioStreamPlayer
 const NIGHT = preload("res://Night.tres")
 const DAY = preload("res://Day.tres")
 # Called when the node enters the scene tree for the first time.
@@ -8,11 +9,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_K):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Night"):
 		environment.environment = NIGHT
 		visible = false
-	if Input.is_key_pressed(KEY_G):
+	if event.is_action_pressed("Day"):
 		environment.environment = DAY
 		visible = true
-	
+	audio.swap()

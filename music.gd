@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func swap() -> void:
 	if environment.environment == preload("res://Night.tres") and stream != preload("res://night_music.tres"):
 		stream = preload("res://night_music.tres")
 		play()

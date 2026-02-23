@@ -20,14 +20,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		deg_to_rad(90)
 		)
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Flashlight_Toggle") and (battery.value >= 10 or flashlight.visible == true):
+func _input(event: InputEvent) -> void:
+	if event.is_action("Flashlight_Toggle") and (battery.value >= 10 or flashlight.visible == true):
 		flashlight.visible = not flashlight.visible
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if Input.is_action_just_pressed("Quit"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if Input.is_action_just_pressed("FullScreen"):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			event.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action("Quit"):
+		event.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event.is_action("FullScreen"):
 		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
